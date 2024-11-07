@@ -11,6 +11,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: step 2 - run k6 load test
-        uses: latency-lingo/github-action@v0.0.2
+        uses: grafana/k6-action@v0.2.0
         with: 
           filename: exemplo.js

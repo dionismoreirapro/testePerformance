@@ -8,18 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: step 1 - checkout
-        uses: actions/checkout@v3
-      
-      - name: Configuração do K6
-        run: |
-          sudo apt update
-          sudo apt install -y k6
+        uses: actions/checkout@v4
 
-      - name: Executar o Teste de Performance
-        run: k6 run exemplo.js
-
-      - name: Salvar Relatório de Performance
-        uses: actions/upload-artifact@v2
-        with:
-          name: k6-performance-report
-          path: /tmp/k6-result.json
+      - name: step 2 - run k6 load test
+        uses: latency-lingo/github-action@v0.0.2
+        with: 
+          filename: scripts/test.js

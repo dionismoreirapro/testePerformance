@@ -13,4 +13,4 @@ jobs:
       - name: step 2 - run k6 load test
         uses: latency-lingo/github-action@v0.0.2
         with: 
-          filename: scripts/test.js
+          filename: exemplo.js

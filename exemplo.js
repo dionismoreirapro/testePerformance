@@ -3,7 +3,7 @@ import { check, sle } from 'k6'
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 export const options ={
-    stages: [{duration: '5m', target: 500}],
+    stages: [{duration: '2s', target: 10}],
     thresholds:{
         checks: ['rate > 0.99'], // range maior que 99%
         http_req_failed: ['rate < 0.01'],

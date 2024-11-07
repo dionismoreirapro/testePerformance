@@ -1,21 +1,15 @@
-name: Teste de Performance com K6
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+name: K6 load test
+on: [push]
+permissions:
+  contents: write
 jobs:
-  k6-performance-test:
+  build: 
+    name: K6 load test
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v2
-
+      - name: step 1 - checkout
+        uses: actions/checkout@v3
+      
       - name: Configuração do K6
         run: |
           sudo apt update

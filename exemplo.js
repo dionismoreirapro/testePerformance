@@ -34,6 +34,6 @@ export default function(){
 
 export function handleSummary(data) {
     return {
-      "relatorioK6.html": htmlReport(data),
+      "index.html": htmlReport(data),
     };
   }

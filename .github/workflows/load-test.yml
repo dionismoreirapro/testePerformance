@@ -1,31 +1,31 @@
-name: K6 load test
-on: [push]
-permissions:
-  contents: write
+name: Teste de Performance com K6
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  build: 
-    name: K6 load test
+  k6-performance-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: step 1 - checkout
-        uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v2
 
-      - name: step 2 - run k6 load test
-        uses: grafana/k6-action@v0.3.1
-        with: 
-          filename: exemplo.js
+      - name: Configuração do K6
+        run: |
+          sudo apt update
+          sudo apt install -y k6
 
-      - run: ls & mkdir report & mv index.html report
-      
-      - name: step 3 - upload artifact
-        uses: actions/upload-artifact@v3
-        with: 
-          name: relatorio de testes de performance
-          path: report
-      
-      - name: step 4 - publish report
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Executar o Teste de Performance
+        run: k6 run exemplo.js
+
+      - name: Salvar Relatório de Performance
+        uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: report
+          name: k6-performance-report
+          path: /tmp/k6-result.json
